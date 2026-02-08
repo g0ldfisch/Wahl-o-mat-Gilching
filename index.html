@@ -78,8 +78,8 @@
 <div id="app">
     <div id="view-start">
         <h1>Wahl-O-Mat Gilching 2026</h1>
-        <p>Vergleichen Sie Ihre Standpunkte mit den Parteien für die Gemeinderatswahl am 08. März 2026.</p>
-        <button onclick="startQuiz()" style="background: var(--primary); color: white; width: 100%;">Jetzt starten</button>
+        <p>Vergleichen Sie Ihre Positionen mit den Parteien basierend auf der politischen Analyse vom Februar 2026.</p>
+        <button onclick="startQuiz()" style="background: var(--primary); color: white; width: 100%;">Analyse starten</button>
     </div>
 
     <div id="view-quiz" class="hidden">
@@ -90,7 +90,6 @@
             <button class="btn-agree" onclick="handleAnswer(1)">Stimme zu</button>
             <button class="btn-neutral" onclick="handleAnswer(0)">Neutral</button>
             <button class="btn-disagree" onclick="handleAnswer(-1)">Lehne ab</button>
-            <button onclick="handleAnswer(null)">These überspringen</button>
         </div>
     </div>
 
@@ -103,45 +102,43 @@
 
 <script>
     const questions = [
-        "In der Karolingerstraße soll dauerhaft Tempo 30 gelten.",
-        "Der Bau von zwei Windrädern im Gilchinger Forst soll beschleunigt werden.",
-        "Die Bebauung der Glatze soll wie geplant mit 1400 Bewohnern erfolgen.",
-        "Bei neuen Wohnbauprojekten muss eine Sozialquote von mindestens 30% gelten.",
-        "Der Standort des neuen Skaterparks hinter der Kletterhalle soll bleiben.",
-        "Die Gewerbesteuer soll zur Sanierung des Haushalts erhöht werden.",
-        "Die Gemeinde soll das Schwammstadt-Konzept priorisieren.",
-        "Der Ausbau der Fernwärme soll auch in Randgebieten verpflichtend geprüft werden.",
-        "In Gilching sollen weitere Flächen für das Gewerbegebiet Süd versiegelt werden.",
-        "Das Bahnhofsgebäude soll zeitnah saniert statt abgerissen werden.",
-        "Die Gemeinde soll ein Vorkaufsrecht für Grundstücke aktiv nutzen.",
-        "Der Jugendbeirat soll ein Budget von über 10.000 Euro erhalten.",
-        "Radwege sollen zulasten von Parkplätzen ausgebaut werden.",
-        "Die Ortsmitte soll weitgehend autofrei gestaltet werden.",
-        "Gilching soll dem Bündnis lebenswerte Städte treu bleiben.",
-        "Für den Windpark soll es ein exklusives Bürger-Beteiligungsmodell geben.",
-        "Die Erweiterung des Gewerbeparks Nord soll gestoppt werden.",
-        "Die Gemeinde soll mehr Personal in der Sozialberatung einstellen.",
-        "Neue Baugebiete dürfen nur mit Photovoltaik-Pflicht genehmigt werden.",
-        "Die Westumgehung soll an weiteren Stellen lärmschutzoptimiert werden.",
-        "Gilching soll eine eigene kommunale Wohnungsbaugesellschaft gründen.",
-        "Die Digitalisierung der Verwaltung hat Vorrang vor physischen Services.",
-        "Kaltluftentstehungsgebiete müssen strikt von Bebauung frei bleiben.",
-        "Die Vereinsförderung soll trotz Haushaltsnotlage ungekürzt bleiben.",
-        "Das Projekt Wohnen gegen Hilfe soll finanziell stärker gefördert werden.",
-        "Die Anbindung der Glatze darf nicht über den Starnberger Weg erfolgen.",
-        "Die Gemeinde soll vermehrt Flächen für Agri-Photovoltaik ausweisen.",
-        "Der Hebesatz für die Grundsteuer B soll gesenkt werden.",
-        "Gilching soll sich für ein drittes Gymnasium im Kreis einsetzen.",
-        "Streetworker-Stellen für Jugendliche sollen dauerhaft abgesichert werden."
+        "Die Entwicklung der Ortsmitte (Glatze) ist notwendig für die Zukunft Gilchings.",
+        "Gilching soll strikt bis 2035 klimaneutral werden.",
+        "Neue Gewerbeflächen sind essenziell zur Sicherung der Steuereinnahmen.",
+        "Beim Bauen soll das Schwammstadt-Prinzip Vorrang vor Betonflächen haben.",
+        "Die Gemeinde soll primär auf technologische Lösungen wie Geothermie setzen.",
+        "Der Ausbau von Kitas hat absolute Priorität vor anderen Infrastrukturprojekten.",
+        "Digitalisierung der Verwaltung ist wichtiger als physische Bürgerservices.",
+        "Das Wachstum Gilchings muss zum Erhalt des dörflichen Charakters begrenzt werden.",
+        "Große Bauprojekte führen zu einem untragbaren Verkehrskollaps.",
+        "Die Wärmeplanung birgt zu hohe finanzielle Risiken für die Bürger.",
+        "Soziale Gerechtigkeit ist wichtiger als rein ökonomisches Wachstum.",
+        "Ideologiegetriebene Verbotspolitik beim Bauen soll abgelehnt werden.",
+        "Die Sanierung von Schulen ist die wichtigste soziale Aufgabe.",
+        "Die Gemeinde soll die Expansionspolitik der letzten Jahre stoppen.",
+        "Transparenz in Entscheidungsprozessen muss massiv erhöht werden.",
+        "Klimaneutralität bis 2035 ist ein unverhandelbares Ziel.",
+        "Wirtschaftliche Stabilität ist die Grundlage für alle anderen Projekte.",
+        "Inklusion muss als harter Standortfaktor etabliert werden.",
+        "Die Verkehrswende weg vom Auto muss beschleunigt werden.",
+        "Die Gemeinde braucht eine fachliche Expertise (z.B. Bauingenieure) im Bürgermeisteramt.",
+        "Die Förderung des Ehrenamts ist zentral für den sozialen Zusammenhalt.",
+        "Das Bauvorhaben Glatze soll in der aktuell geplanten Dichte reduziert werden.",
+        "Gewerbegebiet-Erweiterungen schaden dem Ortscharakter zu sehr.",
+        "Menschliche Wärme ist in der Politik wichtiger als technokratische Effizienz.",
+        "Die Einhaltung von Klimazielen (Kreistagsbeschluss 2005) ist zwingend.",
+        "Technologischer Fortschritt ist der beste Weg für ökologische Anpassung.",
+        "Bürgernahe Politik bedeutet vor allem, Großprojekte kritisch zu hinterfragen.",
+        "Die Modernisierung der Verwaltung spart langfristig Kosten.",
+        "Flächenentsiegelung ist wichtiger als neue Gewerbeansiedlungen.",
+        "Die Gemeinde soll sich als Korrektiv gegen unkontrolliertes Wachstum sehen."
     ];
 
     const parties = [
-        { name: "CSU", answers: [-1, 0, 1, 0, -1, -1, 0, 0, 1, 1, -1, 0, -1, -1, -1, 1, -1, 0, 0, 1, -1, 1, 0, 1, 0, -1, 0, 0, 1, 0] },
-        { name: "SPD", answers: [1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, -1, 1, 1, 0, 1, 0, 1, 1, 1, -1, 1, -1, 1, 1] },
-        { name: "GRÜNE", answers: [1, 1, 0, 1, 1, 0, 1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, -1, 1, 1] },
-        { name: "FW", answers: [0, 0, 0, 0, 0, -1, 0, 0, 1, 1, 0, 0, -1, -1, 0, 1, -1, 0, 0, 1, -1, 0, 0, 1, 0, 0, 0, 0, 1, 0] },
-        { name: "BfG", answers: [1, 0, -1, 0, -1, -1, 0, 0, -1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, -1, 1, 1, 1, 1, 0, 0, 1, 1] },
-        { name: "FDP", answers: [-1, 0, 1, -1, 0, -1, 0, -1, 1, 1, -1, 0, -1, -1, -1, 0, -1, -1, -1, 0, -1, 1, 0, 0, 0, -1, 0, 1, 1, 0] }
+        { name: "CSU", answers: [1, 0, 1, -1, 1, 0, 1, -1, -1, -1, 0, 1, 0, -1, 0, 0, 1, 0, -1, 1, 0, -1, -1, 0, 0, 1, -1, 1, -1, -1] },
+        { name: "GRÜNE", answers: [0, 1, -1, 1, 0, 1, 0, 1, 1, 0, 1, -1, 1, 1, 1, 1, -1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1] },
+        { name: "SPD", answers: [1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0] },
+        { name: "BfG", answers: [-1, 0, -1, 0, -1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, -1, 0, 0, -1, 1, 1, 1, 1, 0, -1, 1, 0, 0, 1] }
     ];
 
     let currentQuestionIndex = 0;
@@ -155,9 +152,9 @@
 
     function showQuestion() {
         document.getElementById('question-text').innerText = questions[currentQuestionIndex];
-        document.getElementById('question-count').innerText = `These ${currentQuestionIndex + 1} von ${questions.length}`;
+        document.getElementById('question-count').innerText = "These " + (currentQuestionIndex + 1) + " von " + questions.length;
         const progress = ((currentQuestionIndex) / questions.length) * 100;
-        document.getElementById('progress-fill').style.width = `${progress}%`;
+        document.getElementById('progress-fill').style.width = progress + "%";
     }
 
     function handleAnswer(val) {
@@ -172,42 +169,31 @@
 
     function calculateMatch(partyAnswers, userAnswers) {
         let score = 0;
-        let maxScore = 0;
+        let maxScore = userAnswers.length * 2;
         for (let i = 0; i < userAnswers.length; i++) {
-            if (userAnswers[i] === null) continue;
-            maxScore += 2;
             const partyVal = partyAnswers[i];
             const userVal = userAnswers[i];
-
             if (userVal === partyVal) {
                 score += 2;
             } else if (userVal === 0 || partyVal === 0) {
                 score += 1;
-            } else {
-                score += 0;
             }
         }
-        return maxScore > 0 ? Math.round((score / maxScore) * 100) : 0;
+        return Math.round((score / maxScore) * 100);
     }
 
     function showResults() {
         document.getElementById('view-quiz').classList.add('hidden');
         document.getElementById('view-results').classList.remove('hidden');
         const resultsList = document.getElementById('results-list');
-        
         const partyScores = parties.map(p => ({
             name: p.name,
             score: calculateMatch(p.answers, userAnswers)
         })).sort((a, b) => b.score - a.score);
-
-        resultsList.innerHTML = partyScores.map(p => `
-            <div class="result-item">
-                <strong>${p.name}: ${p.score}%</strong>
-                <div class="party-bar" style="width: ${p.score}%"></div>
-            </div>
-        `).join('');
+        resultsList.innerHTML = partyScores.map(p => 
+            "<div class='result-item'><strong>" + p.name + ": " + p.score + "%</strong><div class='party-bar' style='width: " + p.score + "%'></div></div>"
+        ).join('');
     }
 </script>
-
 </body>
 </html>
